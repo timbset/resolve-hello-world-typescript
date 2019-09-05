@@ -7,35 +7,29 @@ const prodConfig = {
   staticPath: 'static',
   staticDir: 'static',
   distDir: 'dist',
-  readModelAdapters: [
-    {
+  readModelConnectors: {
+    default: {
       name: 'default',
       module: 'resolve-readmodel-memory',
       options: {}
-    }
-    /*
-      {
-        name: 'default',
-        module: 'resolve-readmodel-mongo',
-        options: {
-          url: 'mongodb://127.0.0.1:27017/MyDatabaseName',
-        }
+    },
+    /*default: {
+      module: 'resolve-readmodel-mongo',
+      options: {
+        url: 'mongodb://127.0.0.1:27017/MyDatabaseName',
       }
-    */
-    /*
-      {
-        name: 'default',
-        module: 'resolve-readmodel-mysql',
-        options: {
-          host: 'localhost',
-          port: 3306,
-          user: 'customUser',
-          password: 'customPassword',
-          database: 'customDatabaseName'
-        }
+    },*/
+    /*default: {
+      module: 'resolve-readmodel-mysql',
+      options: {
+        host: 'localhost',
+        port: 3306,
+        user: 'customUser',
+        password: 'customPassword',
+        database: 'customDatabaseName'
       }
-    */
-  ],
+    },*/
+  },
   snapshotAdapter: {
     module: 'resolve-snapshot-lite',
     options: {
@@ -59,7 +53,7 @@ const prodConfig = {
   */ storageAdapter: {
     module: 'resolve-storage-lite',
     options: {
-      pathToFile: 'event-storage.db'
+      databaseFile: 'data/storage.db'
     }
   },
   /*

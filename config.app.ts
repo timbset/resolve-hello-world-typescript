@@ -10,9 +10,9 @@ const appConfig = {
   readModels: [
     {
       name: 'read-model-name',
+      connectorName: 'default',
       projection: 'build/common/read-models/read-model-name.projection.js',
-      resolvers: 'build/common/read-models/read-model-name.resolvers.js',
-      adapterName: 'default'
+      resolvers: 'build/common/read-models/read-model-name.resolvers.js'
     }
   ],
   viewModels: [
@@ -27,12 +27,15 @@ const appConfig = {
   sagas: [
     {
       name: 'saga-name',
-      cronHandlers: 'build/common/sagas/saga-name.cron.js',
-      eventHandlers: 'build/common/sagas/saga-name.event.js'
+      source: 'build/common/sagas/saga-name.js',
+      connectorName: 'default',
+      schedulerName: 'scheduler'
     }
   ],
   redux: {
-    reducers: { 'reducer-name': 'build/client/reducers/reducer-name.js' },
+    reducers: {
+      'reducer-name': 'build/client/reducers/reducer-name.js'
+    },
     middlewares: ['build/client/middlewares/middleware-name.js']
   }
 }

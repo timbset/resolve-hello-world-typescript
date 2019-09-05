@@ -68,3 +68,5 @@ static.zip
 
 build
 *.db
+*.db-journal
+.idea

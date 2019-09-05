@@ -10,35 +10,30 @@ const devConfig = {
   redux: {
     enhancers: ['build/client/enhancers/redux-devtools.js']
   },
-  readModelAdapters: [
-    {
-      name: 'default',
-      module: 'resolve-readmodel-memory',
-      options: {}
-    }
-    /*
-      {
-        name: 'default',
-        module: 'resolve-readmodel-mongo',
-        options: {
-          url: 'mongodb://127.0.0.1:27017/MyDatabaseName',
-        }
+  readModelConnectors: {
+    default: {
+      module: 'resolve-readmodel-lite',
+      options: {
+        databaseFile: 'data/read-models.db'
       }
-    */
-    /*
-      {
-        name: 'default',
-        module: 'resolve-readmodel-mysql',
-        options: {
-          host: 'localhost',
-          port: 3306,
-          user: 'customUser',
-          password: 'customPassword',
-          database: 'customDatabaseName'
-        }
+    },
+    /*default: {
+      module: 'resolve-readmodel-mongo',
+      options: {
+        url: 'mongodb://127.0.0.1:27017/MyDatabaseName',
       }
-    */
-  ],
+    },*/
+    /*default: {
+      module: 'resolve-readmodel-mysql',
+      options: {
+        host: 'localhost',
+        port: 3306,
+        user: 'customUser',
+        password: 'customPassword',
+        database: 'customDatabaseName'
+      }
+    }*/
+  },
   snapshotAdapter: {
     module: 'resolve-snapshot-lite',
     options: {
@@ -46,77 +41,62 @@ const devConfig = {
       bucketSize: 100
     }
   },
-  /*
-    {
-      module: 'resolve-snapshot-mysql',
-      options: {
-        host: 'localhost',
-        port: 3306,
-        user: 'customUser',
-        password: 'customPassword',
-        database: 'customDatabaseName',
-        tableName: 'customTableName',
-        bucketSize: 100
-      }
+  /*{
+    module: 'resolve-snapshot-mysql',
+    options: {
+      host: 'localhost',
+      port: 3306,
+      user: 'customUser',
+      password: 'customPassword',
+      database: 'customDatabaseName',
+      tableName: 'customTableName',
+      bucketSize: 100
     }
-  */ storageAdapter: {
+  },*/
+  storageAdapter: {
     module: 'resolve-storage-lite',
     options: {
-      pathToFile: 'event-storage.db'
+      databaseFile: 'data/storage.db'
     }
   },
-  /*
-    {
-      module: 'resolve-storage-mongo',
-      options: {
-        url: 'mongodb://127.0.0.1:27017/MyDatabaseName',
-        collectionName: 'Events'
-      }
+  /*{
+    module: 'resolve-storage-mongo',
+    options: {
+      url: 'mongodb://127.0.0.1:27017/MyDatabaseName',
+      collectionName: 'Events'
     }
-  */
-  /*
-    {
-      module: 'resolve-storage-mysql',
-      options: {
-        host: 'localhost',
-        port: 3306,
-        user: 'customUser',
-        password: 'customPassword',
-        database: 'customDatabaseName',
-        tableName: 'customTableName'
-      }
+  },*/
+  /*{
+    module: 'resolve-storage-mysql',
+    options: {
+      host: 'localhost',
+      port: 3306,
+      user: 'customUser',
+      password: 'customPassword',
+      database: 'customDatabaseName',
+      tableName: 'customTableName'
     }
-  */ busAdapter: {
-    module: 'resolve-bus-memory',
-    options: {}
-  },
-  /*
-    {
-      module: 'resolve-bus-rabbitmq',
-      options: {
-        url: 'amqp://localhost'
-      }
-    }
-  */
-  /*
-    {
-      module: 'resolve-bus-zmq',
-      options: {
-        address: '127.0.0.1'
-      }
-    }
-  */ subscribeAdapter: {
+  },*/
+  subscribeAdapter: {
     module: 'resolve-subscribe-socket.io',
     options: {}
   },
-  /*
-    {
-      module: 'resolve-subscribe-mqtt',
-      options: {}
-    }
-  */ jwtCookie: {
+  /*{
+    module: 'resolve-subscribe-mqtt',
+    options: {}
+  },*/
+  jwtCookie: {
     name: 'jwt',
     maxAge: 31536000000
+  },
+  schedulers: {
+    scheduler: {
+      adapter: {
+        module: 'resolve-scheduler-local',
+        options: {}
+      },
+      connectorName: 'default'
+    }
   }
 }
 
